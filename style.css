@@ -13,6 +13,13 @@ h2 {
   color: #2d3a4b;
 }
 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -21,6 +28,7 @@ table {
   border-radius: 16px;
   overflow: hidden;
   background: #fff;
+  min-width: 480px;
 }
 th, td {
   border: 1px solid #b0bec5;
@@ -57,4 +65,29 @@ td:hover:not(:empty) {
   min-width: 320px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.1em;
+    margin-top: 20px;
+  }
+  .table-wrapper {
+    padding: 0 2vw;
+  }
+  table {
+    min-width: 360px;
+    font-size: 0.95em;
+  }
+  th, td {
+    padding: 8px 8px;
+    font-size: 0.95em;
+  }
+  #result {
+    font-size: 1em;
+    padding: 12px 8px;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
 } 
