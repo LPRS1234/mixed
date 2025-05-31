@@ -73,6 +73,25 @@ const elementMap = {
   MgCO3: "Mg, C, O"
 };
 
+// 이온 정보 데이터
+const ionInfo = {
+  // 양이온
+  'Ag⁺': '은 이온 (Ag⁺)\n1가 양이온',
+  'Pb²⁺': '납 이온 (Pb²⁺)\n2가 양이온',
+  'Cu²⁺': '구리(II) 이온 (Cu²⁺)\n2가 양이온',
+  'Zn²⁺': '아연 이온 (Zn²⁺)\n2가 양이온',
+  'Ba²⁺': '바륨 이온 (Ba²⁺)\n2가 양이온',
+  'Ca²⁺': '칼슘 이온 (Ca²⁺)\n2가 양이온',
+  'Mg²⁺': '마그네슘 이온 (Mg²⁺)\n2가 양이온',
+  // 음이온
+  'CO₃²⁻': '탄산 이온 (CO₃²⁻)\n2가 음이온',
+  'SO₄²⁻': '황산 이온 (SO₄²⁻)\n2가 음이온',
+  'S²⁻': '황 이온 (S²⁻)\n2가 음이온',
+  'I⁻': '아이오딘화 이온 (I⁻)\n1가 음이온',
+  'Cl⁻': '염화 이온 (Cl⁻)\n1가 음이온',
+  'Br⁻': '브롬화 이온 (Br⁻)\n1가 음이온'
+};
+
 let selectedRow = null;
 let selectedCol = null;
 
@@ -113,4 +132,18 @@ function showResult() {
       resultDiv.textContent = "이 조합에서는 앙금이 생성되지 않습니다.";
     }
   }
-} 
+}
+
+// 페이지 로드 시 이온 정보 툴팁 추가
+window.addEventListener('DOMContentLoaded', () => {
+  // 양이온(th, 첫번째 열)
+  document.querySelectorAll('#precipitateTable tr:not(:first-child) th').forEach(th => {
+    const ion = th.textContent.trim();
+    if (ionInfo[ion]) th.title = ionInfo[ion];
+  });
+  // 음이온(th, 첫번째 행)
+  document.querySelectorAll('#precipitateTable tr:first-child th:not(:first-child)').forEach(th => {
+    const ion = th.textContent.trim();
+    if (ionInfo[ion]) th.title = ionInfo[ion];
+  });
+}); 
